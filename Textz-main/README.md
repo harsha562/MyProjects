@@ -1,0 +1,2 @@
+# Textz
+Android chatting application 

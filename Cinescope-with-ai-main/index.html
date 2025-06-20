@@ -1,0 +1,68 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Movie Recommender</title>
+    <style>
+        /* Add this inline CSS or move it to your styles.css */
+        .recommendations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .recommendation-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            width: 150px;
+        }
+
+        .recommendation-item img {
+            width: 100%;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Cinescope With AI</h1>
+    <canvas></canvas>  
+
+
+
+    <form method="POST" action="/recommend">
+        <input type="text" name="title" placeholder="Enter movie title" required>
+        <button type="submit">Recommend</button>
+    </form>
+    {% if recommendations %}
+        <h2>Recommendations:</h2>
+        <div class="recommendations">
+            {% for movie, poster in zip(recommendations,posters) %}
+            
+            <div class="recommendation-item">
+                    <strong>{{ movie }}</strong>
+                    {% if poster != "Poster not available" %}
+                            <br>
+                            <img src="{{ poster }}" alt="Poster of {{ movie }}">
+                        {% else %}
+                            <p>{{ poster }}</p>
+                        {% endif %}
+            </div>
+            {% endfor %}
+          
+        </div>
+        
+
+    {% endif %}
+
+
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    
+</body>
+</html>
