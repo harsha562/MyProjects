@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI News Aggregator</title>
+</head>
+<body>
+    <h1>Welcome to AI News Aggregator</h1>
+    <p>Logged in as: {{ current_user.id }}</p>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <form action="/news" method="post">
+        <label for="country">Country:</label>
+        <input type="text" name="country" id="country" value="us">
+        <br>
+        <label for="category">Category:</label>
+        <input type="text" name="category" id="category" value="technology">
+        <br>
+        <label for="preference">Preference:</label>
+        <select name="preference" id="preference">
+            <option value="positive">Positive</option>
+            <option value="negative">Negative</option>
+            <option value="neutral">Neutral</option>
+        </select>
+        <br>
+        <button type="submit">Get News</button>
+    </form>
+</body>
+</html>
